@@ -65,3 +65,10 @@ end
 gem "shakapacker", "= 7.1"
 
 gem "react_on_rails", "= 13.4"
+
+# Use Json Web Token (JWT) for token based authentication
+gem 'jwt'
+# Use ActiveModel has_secure_password
+gem 'bcrypt', '~> 3.1.7'
+
+gem "pg", "~> 1.5"

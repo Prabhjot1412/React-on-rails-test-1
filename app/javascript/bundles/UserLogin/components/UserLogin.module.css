@@ -1,0 +1,28 @@
+.container {
+  padding: 25px;
+}
+
+.item {
+  margin-bottom: 25px;
+}
+
+.attri {
+  margin-right: 50px;
+}
+
+.submit {
+  margin-left: 75px;
+  margin-top: 20px;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: white;
+  transition: background-color .25s;
+}
+
+.submit:hover {
+  background-color: rgba(128, 128, 128, 0.5);
+}
+
+.submit:active {
+  background-color: rgb(128, 128, 128);
+}

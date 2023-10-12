@@ -6,15 +6,16 @@ class RegistrationController < ApplicationController
     @registration_props = {
       csrf_token: session[:_csrf_token],
       create_path: '/registration',
-      redirect_path: registration_index_path,
+      redirect_path: registration_index_path
     }
   end
 
   def create
-    User.create!(user_params)
-    flash[:message] = "success"
+    user = User.new(user_params)
+    flash[:message] = user.save ? "Success" : user.errors.full_messages
+    render json: {error_messages: user.errors.full_messages}
   rescue => error
-    flash[:message] = "error: #{error.message}"
+    render error: error.message, status: 500
   end
 
   private

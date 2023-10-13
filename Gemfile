@@ -72,3 +72,5 @@ gem 'jwt'
 gem 'bcrypt', '~> 3.1.7'
 
 gem "pg", "~> 1.5"
+
+gem "font-awesome-sass", "~> 6.4"

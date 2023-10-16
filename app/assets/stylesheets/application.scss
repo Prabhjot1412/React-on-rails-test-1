@@ -15,3 +15,12 @@
  */
 
  @import "font-awesome";
+
+ body {
+  background-color: rgba(0, 255, 255, 0.325);
+ }
+
+ a {
+  color: inherit;
+  text-decoration: inherit; /* no underline */
+}

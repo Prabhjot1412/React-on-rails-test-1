@@ -13,6 +13,7 @@ class RegistrationController < ApplicationController
   def create
     user = User.new(user_params)
     flash[:message] = user.save ? "Success" : user.errors.full_messages
+    log_in_user(user_id: user.id)
     render json: {error_messages: user.errors.full_messages}
   rescue => error
     render error: error.message, status: 500

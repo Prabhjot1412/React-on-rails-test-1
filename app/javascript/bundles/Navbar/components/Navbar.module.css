@@ -9,12 +9,19 @@
   height: fit-content;
 }
 
-.navbar .item {
+.item {
   height: max-content;
   border-right: 2px solid black;
   border-collapse: collapse;
   padding: 15px;
   transition: background-color .1s;
+  cursor: pointer;
+}
+
+.holder {
+  padding: 15px;
+  padding-right: unset;
+  padding-left: unset;
 }
 
 .first {
@@ -23,6 +30,10 @@
 
 .navbar .item:hover {
   background-color: rgba(191, 255, 96, 0.5);
+}
+
+.navbar .item:active {
+  background-color: rgba(148, 198, 73, 0.5);
 }
 
 body {

@@ -10,9 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_09_123719) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_17_130834) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "characters", force: :cascade do |t|
+    t.bigint "profile_id"
+    t.string "name", null: false
+    t.string "char_class"
+    t.integer "level", default: 1
+    t.float "hp"
+    t.float "mp"
+    t.float "current_hp"
+    t.float "current_mp"
+    t.float "attack", default: 0.0
+    t.float "magic_attack", default: 0.0
+    t.float "defense", default: 0.0
+    t.float "magic_defense", default: 0.0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_characters_on_profile_id"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"

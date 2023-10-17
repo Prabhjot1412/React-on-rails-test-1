@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import style from "./UserLogin.module.css"
 
-const RegistrationPage = (props) => {
+const LoginPage = (props) => {
   const [userInputs, setUserInputs] = useState({
     username: '',
     password: '',
@@ -16,7 +16,8 @@ const RegistrationPage = (props) => {
       method: "POST",
       body: JSON.stringify({
         username: userInputs.username,
-        password: userInputs.password
+        password: userInputs.password,
+        login: true,
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -35,7 +36,7 @@ const RegistrationPage = (props) => {
   return (
     <div>
       <div className={style.container}>
-        <h1>Registration</h1>
+        <h1>Login</h1>
         <form onSubmit={event => handleSubmit(event)}>
           <div className={style.item}>
             <label className={style.attri} htmlFor="username">Username</label>
@@ -63,4 +64,4 @@ const RegistrationPage = (props) => {
   );
 }
 
-export default RegistrationPage;
+export default LoginPage;

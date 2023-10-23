@@ -18,7 +18,7 @@ module ApplicationHelper
     generated_at = JwtService.decode(session[:user_token])[:generated_at].to_datetime
     return false if generated_at > 6.hours.ago
 
-    reset_session
+    session.delete(:user_token)
     true
   end
 end

@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def expired?
     generated_at = JwtService.decode(session[:user_token])[:generated_at].to_datetime
-    return false if generated_at > 6.hours_ago
+    return false if generated_at > 6.hours.ago
 
     reset_session
     true

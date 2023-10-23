@@ -12,14 +12,17 @@
 
 .submit {
   margin-top: 20px;
-  border: 2px solid black;
+  border: 1px solid black;
   border-radius: 5px;
-  background-color: white;
-  transition: background-color .25s;
+  padding: 5px;
+  background-color: transparent;
+  transition: background-color .25s, color .25s;
+  cursor: pointer;
 }
 
 .submit:hover {
-  background-color: rgba(128, 128, 128, 0.5);
+  color: wheat;
+  background-color: black;
 }
 
 .submit:active {

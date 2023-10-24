@@ -3,14 +3,39 @@ import { useState } from "react";
 import style from "./../../UserLogin/components/UserLogin.module.css"
 
 const CreateProfileForm = (props) => {
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    console.log(props)
+    let response = await fetch(props.main_page_props.profile_create_path, {
+      method: "POST",
+      body: JSON.stringify({
+        username: userInputs.username,
+        difficulty: userInputs.difficulty,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        'X-CSRF-TOKEN': props.main_page_props.csrf_token
+      }
+    })
+    let response_json = await response.json()
+    let errorsList = response_json.error_messages
+    setErrorMessages(errorsList)
+
+    if (response.ok && errorsList.length === 0) {
+      // location.href = props.main_page_props.redirect_path;
+    }
   }
+
+  const [errorMessages, setErrorMessages] = useState([])
 
   const [userInputs, setUserInputs] = useState({
     username: '',
-    password: '',
+    difficulty: '',
   })
+
+  const unsetMargin = {
+    marginLeft: 'unset'
+  }
 
   return(
     <React.Fragment>
@@ -31,7 +56,7 @@ const CreateProfileForm = (props) => {
           </select>
         </div>
 
-        {/* <div className={style.error_container}>
+        <div className={style.error_container} style={unsetMargin}>
           { errorMessages.length > 0 && errorMessages.map((error_message) => {
             return(
               <p key={error_message}>
@@ -39,7 +64,7 @@ const CreateProfileForm = (props) => {
               </p>
             )
           })}
-        </div> */}
+        </div>
         <button className={style.submit}>Submit</button>
       </form>
     </React.Fragment>

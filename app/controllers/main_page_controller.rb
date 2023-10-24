@@ -3,7 +3,9 @@ class MainPageController < ApplicationController
     @main_page_index_props = {
       **user_details,
       csrf_token: session[:_csrf_token],
-      difficulties: Profile::DIFFICULTIES
+      difficulties: Profile::DIFFICULTIES,
+      profile_create_path: profile_index_path,
+      redirect_path: root_path,
     }
   end
 

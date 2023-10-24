@@ -27,7 +27,6 @@ class RegistrationController < ApplicationController
     return login if params[:login]
 
     user = User.new(user_params)
-    flash[:message] = user.save ? "Success" : user.errors.full_messages
     log_in_user(user_id: user.id)
     render json: {error_messages: user.errors.full_messages}
   rescue => error

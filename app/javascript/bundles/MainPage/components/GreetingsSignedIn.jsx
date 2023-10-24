@@ -22,14 +22,16 @@ const GreetingsSignedIn = (props) => {
     <div className={style.cont}>
       <div className={`${style.cont_item} ${style.border_right}`}>
         <h1>Profiles</h1>
-        { !props.profile &&
+        { props.profile.length == 0 &&
           <>
             <p>You don't have any profiles yet</p>
             <button
               className={buttonStyle.submit}
               onClick={ (e) => { handleModalDisplay(e) } }
             > Create now </button>
-            <modal className={style.modal} onClick={ (e) => handleModalDisplay(e) } id="basemodal">
+          </>
+        }
+        <div className={style.modal} onClick={ (e) => handleModalDisplay(e) } id="basemodal">
               <div className={style.modal_content} id="dont_close_when_clicked">
                 <div style={ {textAlign: "right"} }>
                   <span onClick={ (e) => handleModalDisplay(e)} id="close" className={style.close}>X</span>
@@ -37,7 +39,23 @@ const GreetingsSignedIn = (props) => {
                 <h1>Create new Profile</h1>
                 <CreateProfileForm main_page_props={props}/>
               </div>
-            </modal>
+            </div>
+        { props.profile.length > 0 &&
+          <>
+            {props.profile.map((profile) => {
+              return(
+                <div key={profile.username} className={style.profile_container}>
+                  <p>Profile name: {profile.username}</p>
+                  <p>difficulty: {profile.difficulty}</p>
+                </div>
+              )
+            })}
+            <div
+              className={style.add_profile}
+              onClick={(e) => handleModalDisplay(e)}
+            >
+              <i class="fa-solid fa-plus"></i>
+            </div>
           </>
         }
       </div>

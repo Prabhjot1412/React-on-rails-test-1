@@ -1,7 +1,7 @@
 class Profile < ApplicationRecord
   belongs_to :user
 
-  has_many :characters
+  has_many :characters, dependent: :destroy
 
   DIFFICULTIES = [
     'easy',
@@ -9,4 +9,6 @@ class Profile < ApplicationRecord
     'hard'
   ]
 
+  validates :username, presence: true, uniqueness: true
+  validates :difficulty, presence: true
 end

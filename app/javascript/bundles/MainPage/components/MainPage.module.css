@@ -60,6 +60,17 @@
   width: 60%;
   text-align: center;
   margin-bottom: 30px;
+  transition: background-color 0.25s, color 0.25s, border-color 0.25s;
+}
+
+.profile_container:hover {
+  border-color: wheat;
+  color: wheat;
+  background-color: black;
+}
+
+.profile_container:active {
+  background-color: rgb(71, 71, 71);
 }
 
 .add_profile {

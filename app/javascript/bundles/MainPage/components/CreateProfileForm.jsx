@@ -22,7 +22,7 @@ const CreateProfileForm = (props) => {
     setErrorMessages(errorsList)
 
     if (response.ok && errorsList.length === 0) {
-      // location.href = props.main_page_props.redirect_path;
+      location.reload()
     }
   }
 

@@ -14,9 +14,15 @@ const GreetingsSignedIn = (props) => {
     }
   }
 
+  const handleSelectProfile = (profile) => {
+    setSelectedProfile(profile)
+  }
+
   const validateClose = (target) => {
     return (target.id == 'basemodal' || target.id == 'close')
   }
+
+  const [selectedProfile, setSelectedProfile] = useState(null)
 
   return(
     <div className={style.cont}>
@@ -44,7 +50,7 @@ const GreetingsSignedIn = (props) => {
           <>
             {props.profile.map((profile) => {
               return(
-                <div key={profile.username} className={style.profile_container}>
+                <div onClick={() => handleSelectProfile(profile)} key={profile.username} className={style.profile_container}>
                   <p>Profile name: {profile.username}</p>
                   <p>difficulty: {profile.difficulty}</p>
                 </div>
@@ -54,13 +60,30 @@ const GreetingsSignedIn = (props) => {
               className={style.add_profile}
               onClick={(e) => handleModalDisplay(e)}
             >
-              <i class="fa-solid fa-plus"></i>
+              <i className="fa-solid fa-plus"></i>
             </div>
           </>
         }
       </div>
       <div className={style.cont_item}>
-        <h1>Character</h1>
+        <h1>Characters</h1>
+        {selectedProfile === null &&
+          <h3> No profile selected </h3>
+        }
+        {selectedProfile !== null &&
+          <React.Fragment>
+            <h3>{selectedProfile.username}</h3>
+            {selectedProfile.characters.map((char) => {
+              return(
+                <div key={char.id} className={style.character_box}>
+                  <p> Name: <span className={style.char_details}>{char.name}</span> </p>
+                  <p> class: <span className={style.char_details}>{char.char_class}</span> </p>
+                  <button className={buttonStyle.submit}>Select</button>
+                </div>
+              )
+            })}
+          </React.Fragment>
+        }
       </div>
     </div>
   )

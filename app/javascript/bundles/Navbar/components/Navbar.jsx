@@ -6,7 +6,7 @@ const Navbar = (props) => {
     <div className={style.navbar}>
       <div className={style.holder}>
         <span className={style.item}>
-          <a href="/"><i class="fa-solid fa-dice-d20" /></a> {props.logged_in && props.username}
+          <a href="/"><i className="fa-solid fa-dice-d20" /></a> {props.logged_in && props.username}
         </span>
       </div>
 

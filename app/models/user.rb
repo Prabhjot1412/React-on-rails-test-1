@@ -8,8 +8,9 @@ class User < ApplicationRecord
   def to_hash
     {
       user: self.as_json,
-      profile: self.profiles&.as_json,
-      characters: self.profiles&.map(&:characters).as_json
+      profile: self.profiles&.map do |profile|
+        profile.as_json.merge( { characters: profile.characters.as_json } )
+      end
     }
   end
 end

@@ -9,6 +9,13 @@ class Profile < ApplicationRecord
     'hard'
   ]
 
-  validates :username, presence: true, uniqueness: true
+  validates :username, presence: true
   validates :difficulty, presence: true
+  validate :unique_user
+
+  def unique_user
+    if Profile.where(user_id: self.user_id, username: self.username).present?
+      errors.add(:username, 'already exists')
+    end
+  end
 end

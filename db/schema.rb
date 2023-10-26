@@ -39,7 +39,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_23_143035) do
     t.string "username"
     t.string "difficulty", default: "easy"
     t.index ["user_id"], name: "index_profiles_on_user_id"
-    t.index ["username"], name: "index_profiles_on_username", unique: true
+    t.index ["username", "user_id"], name: "index_username_user_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

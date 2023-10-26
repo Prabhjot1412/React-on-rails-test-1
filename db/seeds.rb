@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+puts "creating users"
+User.create!(username: 'admin', password: '123456')
+User.create!(username: 'user', password: '123456')
+
+puts "creating profiles"
+name = Faker::FunnyName.name
+
+Profile.create!(user_id: 1, username: name)
+Profile.create!(user_id: 2, username: name)

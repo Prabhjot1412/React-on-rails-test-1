@@ -7,7 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 puts "creating users"
-User.create!(username: 'admin', password: '123456')
+User.create!(username: 'admin', password: '123456', role: 'admin')
 User.create!(username: 'user', password: '123456')
 
 puts "creating profiles"
@@ -15,3 +15,8 @@ name = Faker::FunnyName.name
 
 Profile.create!(user_id: 1, username: name)
 Profile.create!(user_id: 2, username: name)
+
+
+puts "creating images"
+Thumbnail.create!(set_name: 'base')
+Thumbnail.last.images.attach(io: File.open("#{Rails.root}/app/assets/images/blank-profile-picture.png"), filename: 'placeholder.png', content_type: 'image/png')

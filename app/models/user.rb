@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :profiles, dependent: :destroy
 
   validates :username, uniqueness: true
+  enum :role, %i[user admin]
 
   def to_hash
     {

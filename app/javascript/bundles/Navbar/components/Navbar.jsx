@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./Navbar.module.css"
+import dropdownStyle from "../../../shared_styles/dropdown.module.css"
 
 const Navbar = (props) => {
+  const [openDropdown, setDropdown] = useState(false)
+
+  const handleDopdown = () => {setDropdown(!openDropdown)}
   return(
     <div className={style.navbar}>
       <div className={style.holder}>
@@ -30,8 +34,14 @@ const Navbar = (props) => {
             </span >
           </React.Fragment>
         }
-        <span className={`${style.item}`}>
-          <i className="fa-solid fa-gear" />
+        <span onMouseLeave={ () => {setDropdown(false)} } className={`${style.item} ${dropdownStyle.dropdown}`}>
+            <i className="fa-solid fa-gear" onClick={handleDopdown}/>
+            {
+              openDropdown &&
+              <div className={dropdownStyle.menu}>
+                <p className={dropdownStyle.menu_item_last}><i className="fa-solid fa-image" /> Thumbnails</p>
+              </div>
+            }
         </span >
       </div>
     </div>

@@ -76,3 +76,6 @@ gem "pg", "~> 1.5"
 gem "font-awesome-sass", "~> 6.4"
 
 gem 'faker'
+gem "cancancan", "~> 3.5"
+
+gem "open-uri", "~> 0.3.0"

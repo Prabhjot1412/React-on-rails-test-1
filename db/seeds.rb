@@ -20,3 +20,4 @@ Profile.create!(user_id: 2, username: name)
 puts "creating images"
 Thumbnail.create!(set_name: 'base')
 Thumbnail.last.images.attach(io: File.open("#{Rails.root}/app/assets/images/blank-profile-picture.png"), filename: 'placeholder.png', content_type: 'image/png')
+Thumbnail.last.images.attach(io: File.open("#{Rails.root}/app/assets/images/warrior.png"), filename: 'warrior', content_type: 'image/png')

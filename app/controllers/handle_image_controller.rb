@@ -2,6 +2,7 @@
 
 class HandleImageController < ApplicationController
   def new
+    authorize! :edit, Thumbnail
 
     images = Thumbnail.find_by!(set_name: 'base').images
 

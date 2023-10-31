@@ -2,7 +2,9 @@ module ApplicationHelper
   def navbar_props
     {
       logged_in: current_user.present?,
-      username: current_user&.username
+      username: current_user&.username,
+      image_view_path: new_handle_image_path,
+      admin: !!(current_user&.admin?)
     }
   end
 

@@ -39,7 +39,9 @@ const Navbar = (props) => {
             {
               openDropdown &&
               <div className={dropdownStyle.menu}>
-                <p className={dropdownStyle.menu_item_last}><i className="fa-solid fa-image" /> Thumbnails</p>
+                { props.admin &&
+                  <a className={dropdownStyle.menu_item_last} href={props.image_view_path}><i className="fa-solid fa-image" /> Thumbnails</a>
+                }
               </div>
             }
         </span >

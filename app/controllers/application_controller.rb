@@ -1,4 +1,9 @@
 class ApplicationController < ActionController::Base
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:message] = exception.message
+    redirect_to root_path
+  end
+
   private
 
   def log_in_user(user_id:)

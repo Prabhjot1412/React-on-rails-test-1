@@ -4,6 +4,7 @@ class CreateCharacters < ActiveRecord::Migration[7.0]
       t.references :profile
 
       t.string :name, null: false
+      t.string :avatar_name, default: Character::DEFAULT_AVATAR
       t.string :char_class
       t.integer :level, default: 1
       t.float :hp

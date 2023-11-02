@@ -45,6 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_27_132133) do
   create_table "characters", force: :cascade do |t|
     t.bigint "profile_id"
     t.string "name", null: false
+    t.string "avatar_name", default: "placeholder"
     t.string "char_class"
     t.integer "level", default: 1
     t.float "hp"

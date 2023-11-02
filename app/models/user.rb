@@ -11,7 +11,8 @@ class User < ApplicationRecord
       user: self.as_json,
       profile: self.profiles&.map do |profile|
         profile.as_json.merge( { characters: profile.characters.as_json } )
-      end
+      end,
+      char_classes: Character::SUPPORTED_CLASSES
     }
   end
 end

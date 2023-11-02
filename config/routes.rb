@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'hello_world', to: 'hello_world#index'
 
   resources :profile, only: %i[create]
+  resources :characters, only: %i[create]
   resources :handle_image, only: %i[new]
 
   root "main_page#index"

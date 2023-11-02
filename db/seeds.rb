@@ -16,8 +16,13 @@ name = Faker::FunnyName.name
 Profile.create!(user_id: 1, username: name)
 Profile.create!(user_id: 2, username: name)
 
+puts 'creating characters'
+
+Profile.all.each do |pro|
+  pro.characters.create!(name: Faker::FunnyName.name, avatar_name: Character::WARRIOR)
+end
 
 puts "creating images"
 Thumbnail.create!(set_name: 'base')
-Thumbnail.last.images.attach(io: File.open("#{Rails.root}/app/assets/images/blank-profile-picture.png"), filename: 'placeholder.png', content_type: 'image/png')
-Thumbnail.last.images.attach(io: File.open("#{Rails.root}/app/assets/images/warrior.png"), filename: 'warrior', content_type: 'image/png')
+Thumbnail.last.images.attach(io: File.open("#{Rails.root}/app/assets/images/blank-profile-picture.png"), filename: Character::DEFAULT_AVATAR, content_type: 'image/png')
+Thumbnail.last.images.attach(io: File.open("#{Rails.root}/app/assets/images/warrior.png"), filename: Character::WARRIOR, content_type: 'image/png')

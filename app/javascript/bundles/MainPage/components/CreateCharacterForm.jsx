@@ -7,7 +7,7 @@ import style from "./../../UserLogin/components/UserLogin.module.css"
 const CreateCharacterForm = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(props)
+
     let response = await fetch(props.main_page_props.character_create_path, {
       method: "POST",
       body: JSON.stringify({
@@ -63,7 +63,7 @@ const CreateCharacterForm = (props) => {
           { errorMessages.length > 0 && errorMessages.map((error_message) => {
             return(
               <p key={error_message}>
-                {error_message }
+                { error_message }
               </p>
             )
           })}

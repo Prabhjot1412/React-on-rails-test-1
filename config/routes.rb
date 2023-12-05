@@ -11,4 +11,10 @@ Rails.application.routes.draw do
   resources :handle_image, only: %i[new]
 
   root "main_page#index"
+
+  resources :main_page, only: %i[index] do
+    collection do 
+      get :home
+    end
+  end
 end

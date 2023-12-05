@@ -15,6 +15,10 @@ class MainPageController < ApplicationController
     }
   end
 
+  def home
+    @home_page_props = {}
+  end
+
   private
 
   def user_details

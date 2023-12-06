@@ -7,8 +7,8 @@ class CreateCharacters < ActiveRecord::Migration[7.0]
       t.string :avatar_name, default: Character::DEFAULT_AVATAR
       t.string :char_class
       t.integer :level, default: 1
-      t.float :hp
-      t.float :mp
+      t.float :hp, default: 100.00
+      t.float :mp, default: 100.00
       t.float :current_hp
       t.float :current_mp
       t.float :attack, default: 0

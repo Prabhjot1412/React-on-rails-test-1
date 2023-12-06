@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_27_132133) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_05_195913) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,14 +42,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_27_132133) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "character_skills", force: :cascade do |t|
+    t.bigint "character_id", null: false
+    t.bigint "skill_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_character_skills_on_character_id"
+    t.index ["skill_id"], name: "index_character_skills_on_skill_id"
+  end
+
   create_table "characters", force: :cascade do |t|
     t.bigint "profile_id"
     t.string "name", null: false
     t.string "avatar_name", default: "placeholder"
     t.string "char_class"
     t.integer "level", default: 1
-    t.float "hp"
-    t.float "mp"
+    t.float "hp", default: 100.0
+    t.float "mp", default: 100.0
     t.float "current_hp"
     t.float "current_mp"
     t.float "attack", default: 0.0
@@ -71,6 +80,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_27_132133) do
     t.index ["username", "user_id"], name: "index_username_user_id", unique: true
   end
 
+  create_table "skills", force: :cascade do |t|
+    t.string "name"
+    t.float "power"
+    t.float "cost"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "thumbnails", force: :cascade do |t|
     t.string "set_name"
     t.datetime "created_at", null: false
@@ -87,4 +104,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_27_132133) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "character_skills", "characters"
+  add_foreign_key "character_skills", "skills"
 end

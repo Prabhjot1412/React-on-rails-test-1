@@ -22,6 +22,9 @@ Profile.all.each do |pro|
   pro.characters.create!(name: Faker::FunnyName.name, avatar_name: Character::WARRIOR)
 end
 
+puts 'creating skills'
+Skill.create!(name: 'Attack', power: 10.0, cost: 0.0)
+
 puts "creating images"
 Thumbnail.create!(set_name: 'base')
 Thumbnail.last.images.attach(io: File.open("#{Rails.root}/app/assets/images/blank-profile-picture.png"), filename: Character::DEFAULT_AVATAR, content_type: 'image/png')

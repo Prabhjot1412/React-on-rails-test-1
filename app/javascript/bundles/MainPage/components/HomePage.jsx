@@ -7,7 +7,7 @@ const HomePage = (props) => {
       <div className={style.container}>
         <h3 className={style.underline_on_hover}> Start new game</h3>
 
-        <p><a href="#test" className={`${style.underline_on_hover} ${style.blue}`}> fight a monster</a></p>
+        <p><a href="#test" className={`${style.underline_on_hover} ${style.blue}`}> Fight </a></p>
       </div>
     </React.Fragment>
   )

@@ -79,3 +79,7 @@ gem 'faker'
 gem "cancancan", "~> 3.5"
 
 gem "open-uri", "~> 0.3.0"
+
+gem "rack-cors", "~> 2.0"
+
+gem "awesome_print", "~> 1.9"

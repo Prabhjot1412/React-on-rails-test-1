@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get '/login' , to: 'registration#show'
   get '/logout', to: 'registration#delete'
+  post '/login_api', to: 'registration#login_api'
+  get 'fetch_user', to: 'user#fetch'
 
   get 'hello_world', to: 'hello_world#index'
 

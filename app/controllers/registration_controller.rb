@@ -1,4 +1,6 @@
 class RegistrationController < ApplicationController
+  skip_before_action :verify_authenticity_token, if: :frontend_request
+
   def index
   end
 
@@ -23,6 +25,10 @@ class RegistrationController < ApplicationController
     }
   end
 
+  def login_api
+    login
+  end
+
   def create
     return login if params[:login]
 
@@ -38,6 +44,7 @@ class RegistrationController < ApplicationController
   private
 
   def user_params
+    return params.require(:registration).permit(:username, :password) if frontend_request
     params.permit(:username, :password)
   end
 
@@ -46,10 +53,16 @@ class RegistrationController < ApplicationController
     user = User.find_by_username(user_params[:username])&.authenticate(user_params[:password])
 
     error_messages << "invalid username or password" unless user
-    log_in_user(user_id: user.id) if user
+    token = log_in_user(user_id: user.id) if user
 
-    render json: {error_messages: error_messages}
+    render json: {error_messages: error_messages, user_token: token}
   rescue => e
     render json: { error_messages: [e.message] }
+  end
+
+  def frontend_request
+    origin_url = request.headers["origin"]
+
+    FRONTEND_URL.include?(origin_url)
   end
 end

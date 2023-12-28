@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
     redirect_to root_path
   end
 
+  FRONTEND_URL = ["http://localhost:3000"]
   private
 
   def log_in_user(user_id:)
@@ -15,6 +16,7 @@ class ApplicationController < ActionController::Base
     return if expired?
 
     user_id = JwtService.decode(session[:user_token])[:user_id]
+    return unless user_id
     User.find(user_id)
   end
 

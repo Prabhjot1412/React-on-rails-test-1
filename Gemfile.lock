@@ -68,6 +68,7 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
+    awesome_print (1.9.2)
     bcrypt (3.1.19)
     bindex (0.8.1)
     bootsnap (1.16.0)
@@ -147,6 +148,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.7.1)
     rack (2.2.8)
+    rack-cors (2.0.1)
+      rack (>= 2.0.0)
     rack-proxy (0.7.7)
       rack
     rack-test (2.1.0)
@@ -240,6 +243,7 @@ PLATFORMS
   x86_64-darwin-22
 
 DEPENDENCIES
+  awesome_print (~> 1.9)
   bcrypt (~> 3.1.7)
   bootsnap
   cancancan (~> 3.5)
@@ -252,6 +256,7 @@ DEPENDENCIES
   open-uri (~> 0.3.0)
   pg (~> 1.5)
   puma (~> 5.0)
+  rack-cors (~> 2.0)
   rails (~> 7.0.8)
   react_on_rails (= 13.4)
   selenium-webdriver

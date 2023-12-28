@@ -12,7 +12,7 @@ class Character < ApplicationRecord
 
   WARRIOR = 'warrior'
 
-   SUPPORTED_CLASSES = [
+  SUPPORTED_CLASSES = [
      WARRIOR,
   ]
 

@@ -13,6 +13,7 @@ module ApplicationHelper
     return if expired?
 
     user_id = JwtService.decode(session[:user_token])[:user_id]
+    return unless user_id
     User.find(user_id)
   end
 

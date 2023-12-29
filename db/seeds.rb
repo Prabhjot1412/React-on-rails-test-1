@@ -29,3 +29,6 @@ puts "creating images"
 Thumbnail.create!(set_name: 'base')
 Thumbnail.last.images.attach(io: File.open("#{Rails.root}/app/assets/images/blank-profile-picture.png"), filename: Character::DEFAULT_AVATAR, content_type: 'image/png')
 Thumbnail.last.images.attach(io: File.open("#{Rails.root}/app/assets/images/warrior.png"), filename: Character::WARRIOR, content_type: 'image/png')
+
+puts "creating groups"
+User.first.groups.first_or_create(name: "Wallpapers")

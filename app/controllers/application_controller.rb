@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+  skip_before_action :verify_authenticity_token, if: :frontend_request
+  before_action :set_user
+
   rescue_from CanCan::AccessDenied do |exception|
     flash[:message] = exception.message
     redirect_to root_path
@@ -26,5 +29,18 @@ class ApplicationController < ActionController::Base
 
     reset_session
     true
+  end
+
+  def frontend_request
+    origin_url = request.headers["origin"]
+
+    FRONTEND_URL.include?(origin_url)
+  end
+
+  def set_user
+    return unless session[:user_token].blank?
+    return unless params[:user_token]
+
+    session[:user_token] = params[:user_token]
   end
 end

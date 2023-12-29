@@ -1,6 +1,4 @@
 class RegistrationController < ApplicationController
-  skip_before_action :verify_authenticity_token, if: :frontend_request
-
   def index
   end
 
@@ -58,11 +56,5 @@ class RegistrationController < ApplicationController
     render json: {error_messages: error_messages, user_token: token}
   rescue => e
     render json: { error_messages: [e.message] }
-  end
-
-  def frontend_request
-    origin_url = request.headers["origin"]
-
-    FRONTEND_URL.include?(origin_url)
   end
 end

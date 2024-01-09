@@ -43,4 +43,20 @@ class ApplicationController < ActionController::Base
 
     session[:user_token] = params[:user_token]
   end
+
+  def make_request(user_token: false, &block)
+  errors = []
+  requests = {}
+
+  yield(errors, requests)
+
+  response = {error_messages: errors}
+
+  response["user_token"] = requests["user_token"] if user_token
+
+  render json: response, status: 200
+  rescue => error
+    errors << error.message
+    render json: {error_messages: errors}
+  end
 end

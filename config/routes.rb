@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   scope :api do
     get 'user_images/:token', to: 'myapp#user_images'
+    get '/image/comments', to: 'myapp#fetch_comments'
+
     post 'user_images/:group_name/create', to: 'myapp#create'
     post 'group/create', to: 'myapp#group_create'
     post '/user/create', to: 'myapp#user_create'

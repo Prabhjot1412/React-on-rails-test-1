@@ -31,4 +31,11 @@ Thumbnail.last.images.attach(io: File.open("#{Rails.root}/app/assets/images/blan
 Thumbnail.last.images.attach(io: File.open("#{Rails.root}/app/assets/images/warrior.png"), filename: Character::WARRIOR, content_type: 'image/png')
 
 puts "creating groups"
-User.first.groups.first_or_create(name: "Wallpapers")
+group = User.first.groups.first_or_create(name: "Wallpapers")
+
+puts "attaching images to groups"
+group.images.attach(io: File.open("#{Rails.root}/app/assets/images/meeting.png"), filename: "meeting", content_type: 'image/png')
+
+puts "commenting on images"
+image = group.images.first
+ImageDetail.create!(image_id: image.id, comment: Faker::JapaneseMedia::DragonBall.race)

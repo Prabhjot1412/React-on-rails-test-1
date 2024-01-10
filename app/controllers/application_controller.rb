@@ -53,6 +53,7 @@ class ApplicationController < ActionController::Base
   response = {error_messages: errors}
 
   response["user_token"] = requests["user_token"] if user_token
+  response["output"] = request["output"] if request["output"]
 
   render json: response, status: 200
   rescue => error

@@ -36,6 +36,12 @@ class MyappController < ApplicationController
     end
   end
 
+  def fetch_comments
+    make_request do |errors, requests|
+      requests["output"] = Image::FetchComments.call(image_id: params[:image_id])
+    end
+  end
+
   private
 
   def user_params

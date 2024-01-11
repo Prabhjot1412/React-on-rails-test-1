@@ -1,5 +1,7 @@
 class MyappController < ApplicationController
-  def user_images; end
+  def user_images
+    render json: {response: "hello worldd"}
+  end
 
   def create
     errors = []
@@ -38,7 +40,21 @@ class MyappController < ApplicationController
 
   def fetch_comments
     make_request do |errors, requests|
-      requests["output"] = Image::FetchComments.call(image_id: params[:image_id])
+      requests["output"] = Image::FetchComments.call(image_id: params[:image_id]).map(&:comment)
+    end
+  end
+
+  def make_comment
+    make_request do |errors, requests|
+      imd = ImageDetail.new
+      imd.image_id = params[:image_id]
+      imd.comment = params[:comment]
+
+      if imd.save
+        requests["output"] = "Success"
+      else
+        errors << imd.errors.full_messages
+      end
     end
   end
 

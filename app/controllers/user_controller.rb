@@ -8,7 +8,12 @@ class UserController < ApplicationController
     @user.groups.each do |group|
       hsh = {}
       hsh[:name] = group.name
-      hsh[:images] = group.images.map {|image| url_for(image)}
+      new_hsh = group.images.each_with_object({}) do |image, grp_hsh|
+        grp_hsh[image.id] = url_for(image)
+      end
+
+      hsh[:images] = new_hsh.values
+      hsh[:image_ids] = new_hsh.keys
       grps << hsh
     end
   

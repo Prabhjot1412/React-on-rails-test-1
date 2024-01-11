@@ -27,5 +27,6 @@ Rails.application.routes.draw do
     post 'user_images/:group_name/create', to: 'myapp#create'
     post 'group/create', to: 'myapp#group_create'
     post '/user/create', to: 'myapp#user_create'
+    post '/image/commment/create', to: 'myapp#make_comment'
   end
 end

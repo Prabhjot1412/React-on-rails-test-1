@@ -40,7 +40,7 @@ class MyappController < ApplicationController
 
   def fetch_comments
     make_request do |errors, requests|
-      requests["output"] = Image::FetchComments.call(image_id: params[:image_id]).map(&:comment)
+      requests["output"] = Image::FetchComments.call(image_id: params[:image_id])
     end
   end
 
@@ -58,9 +58,37 @@ class MyappController < ApplicationController
     end
   end
 
+  def delete_comment
+    make_request do |errors, requests|
+      validate_image_exists
+
+      comment = ImageDetail.find(params[:image_details_id])
+      comment.destroy
+    end
+  end
+
+  def delete_image
+    make_request do |errors, requests|
+      image = validate_image_exists
+
+      ActiveRecord::Base.transaction do
+        ImageDetail.where(image_id: image.id).destroy_all
+        image.destroy
+      end
+    end
+  end
+
   private
 
   def user_params
     params.permit(:username, :password)
+  end
+
+  def validate_image_exists
+    grp = current_user.groups.find_by_name(params[:group])
+    image = grp.images.all.where(id: params[:image_id])[0]
+    return image if image.present?
+
+    raise "current user doesn't have image with id #{params[:image_id]}"    
   end
 end

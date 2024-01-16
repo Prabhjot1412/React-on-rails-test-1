@@ -39,3 +39,8 @@ group.images.attach(io: File.open("#{Rails.root}/app/assets/images/meeting.png")
 puts "commenting on images"
 image = group.images.first
 ImageDetail.create!(image_id: image.id, comment: Faker::JapaneseMedia::DragonBall.race)
+
+puts "adding music"
+music = User.first.musics.create(name: Faker::JapaneseMedia::DragonBall.race)
+music.song.attach(io: File.open("#{Rails.root}/app/assets/sample-1.wav"), filename: "sample-1", content_type: 'audio/mpeg')
+music.thumbnail.attach(io: File.open("#{Rails.root}/app/assets/images/meeting.png"), filename: "meeting", content_type: 'image/png')

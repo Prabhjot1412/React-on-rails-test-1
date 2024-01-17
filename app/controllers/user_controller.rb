@@ -16,9 +16,11 @@ class UserController < ApplicationController
       hsh[:image_ids] = new_hsh.keys
       grps << hsh
     end
+
     musics = @user.musics.each_with_object([]) do |music, msc_ar|
       msc_hsh = {}
-      
+
+      msc_hsh[:id] = music.id
       msc_hsh[:name] = music.name
       msc_hsh[:url] = url_for(music.song)
       msc_hsh[:thumbnail] = url_for(music.thumbnail) if music.thumbnail.id

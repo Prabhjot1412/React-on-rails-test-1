@@ -11,4 +11,13 @@ class MusicController < ApplicationController
       errors << music.errors.full_messages unless music.save
     end
   end
+
+  def destroy
+    make_request do |errors, requests|
+      music = Music.find(params[:id])
+
+      errors << "song not found (id: #{params[:id] || "empty"})" if music.blank?
+      music.destroy!
+    end
+  end
 end

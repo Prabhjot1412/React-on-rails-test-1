@@ -30,5 +30,7 @@ Rails.application.routes.draw do
     post '/image/commment/create', to: 'myapp#make_comment'
     post '/image/comment/delete', to: 'myapp#delete_comment'
     post '/image/comment/image', to: 'myapp#delete_image'
+    
+    resources :music, only: :create
   end
 end

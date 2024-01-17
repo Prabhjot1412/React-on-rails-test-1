@@ -16,8 +16,17 @@ class UserController < ApplicationController
       hsh[:image_ids] = new_hsh.keys
       grps << hsh
     end
-  
-    render json: {**@user, groups: grps}, status: 200
+    musics = @user.musics.each_with_object([]) do |music, msc_ar|
+      msc_hsh = {}
+      
+      msc_hsh[:name] = music.name
+      msc_hsh[:url] = url_for(music.song)
+      msc_hsh[:thumbnail] = url_for(music.thumbnail) if music.thumbnail.id
+
+      msc_ar << msc_hsh
+    end
+
+    render json: {**@user, groups: grps, musics: musics}, status: 200
 
   rescue => e
     render json: {error: e.message}, status: 500

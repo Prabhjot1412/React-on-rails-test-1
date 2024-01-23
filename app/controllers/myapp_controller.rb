@@ -1,6 +1,6 @@
 class MyappController < ApplicationController
   def user_images
-    render json: {response: "hello worldd"}
+    render json: {response: "hello world"}
   end
 
   def create

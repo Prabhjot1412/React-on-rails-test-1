@@ -12,6 +12,18 @@ class MusicController < ApplicationController
     end
   end
 
+  def update
+    make_request do |errors, requests|
+      music = Music.find_by(id: params[:music_id], user_id: current_user.id)
+      raise "music not found with id: #{params[:music_id]} and user_id: #{params[:current_user.id]}" unless music.present?
+      music.name = params[:name] if params[:name] != "undefined"
+      music.song.attach(params[:song]) if params[:song].present? && params[:song] != "undefined" 
+      music.thumbnail.attach(params[:thumbnail]) if params[:thumbnail].present? && params[:thumbnail] != "undefined"
+
+      errors << music.errors.full_messages unless music.save
+    end
+  end
+
   def destroy
     make_request do |errors, requests|
       music = Music.find(params[:id])

@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :profiles, dependent: :destroy
   has_many :groups, dependent: :destroy
   has_many :musics, dependent: :destroy
+  has_many :playlists, dependent: :destroy
 
   validates :username, uniqueness: true
   enum :role, %i[user admin]

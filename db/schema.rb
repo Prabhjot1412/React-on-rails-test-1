@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_16_190448) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_23_184354) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -94,6 +94,21 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_16_190448) do
     t.index ["user_id"], name: "index_musics_on_user_id"
   end
 
+  create_table "playlist_musics", force: :cascade do |t|
+    t.bigint "music_id"
+    t.bigint "playlist_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "playlists", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_playlists_on_user_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -132,4 +147,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_16_190448) do
   add_foreign_key "character_skills", "skills"
   add_foreign_key "groups", "users"
   add_foreign_key "musics", "users"
+  add_foreign_key "playlists", "users"
 end

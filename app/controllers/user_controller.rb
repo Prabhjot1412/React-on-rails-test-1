@@ -24,11 +24,14 @@ class UserController < ApplicationController
       msc_hsh[:name] = music.name
       msc_hsh[:url] = url_for(music.song)
       msc_hsh[:thumbnail] = url_for(music.thumbnail) if music.thumbnail.id
+      msc_hsh[:playlists] = PlaylistMusic.where(music_id: music.id).each_with_object([]) do |pm, pm_ar|
+        pm_ar << pm.playlist.name
+      end
 
       msc_ar << msc_hsh
     end
 
-    render json: {**@user, groups: grps, musics: musics}, status: 200
+    render json: {**@user, groups: grps, musics: musics, playlists: @user.playlists.pluck(:name)}, status: 200
 
   rescue => e
     render json: {error: e.message}, status: 500

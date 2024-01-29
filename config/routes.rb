@@ -34,5 +34,10 @@ Rails.application.routes.draw do
     resources :music, only: %i[create]
     post '/music/destroy', to: 'music#destroy'
     post '/music/update', to: 'music#update'
+
+    resources :playlist, only: %i[create]
+    post '/playlist/destroy', to: 'playlist#destroy'
+    post '/playlist/update', to: 'playlist#update'
+
   end
 end
